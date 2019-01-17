@@ -9,8 +9,8 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 
 def main():
     """ Calls the other functions to test them. """
-    run_test_multiply_numbers()
-    run_test_sum_numbers()
+    #run_test_multiply_numbers()
+    #run_test_sum_numbers()
     run_test_print_characters()
     run_test_print_characters_slanted()
 
@@ -117,7 +117,7 @@ def multiply_numbers(sequence_of_lists):
        [FYI: This 'can be multiplied ...' is an example of DUCK TYPING.]
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     #
@@ -128,12 +128,15 @@ def multiply_numbers(sequence_of_lists):
     #             to loop through it in the INNER loop.
     #        -- See   m2e_nested_loops_in_sequences   as needed.
     # ------------------------------------------------------------------
-
+    for j in range (len(sequence_of_lists)):
+        sub = sequence_of_lists[j]
+        for k in range (len(sub)):
+            sub[k] = sub[k] * (j + 1)
 
 def run_test_sum_numbers():
     """ Tests the    sum_numbers    function. """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # Done: 3. Implement this TEST function.
     #   It TESTS the  sum_numbers  function defined below.
     #   Include at least **   3   ** tests (we wrote two for you).
     # ------------------------------------------------------------------
@@ -154,6 +157,11 @@ def run_test_sum_numbers():
 
     # TO DO 3 (continued): Add your ADDITIONAL test(s) here:
 
+    # Test 3:
+    expected = 0
+    answer = sum_numbers(([0, 10, 10, -10], [-10, -10, 0, 10], [10, -10]))
+    print('Expected and actual are:', expected, answer)
+
 
 def sum_numbers(seq_seq):
     """
@@ -166,9 +174,16 @@ def sum_numbers(seq_seq):
                     and each item in the subsequences is a number.
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # Done: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
+    sum = 0
+    for j in range (len(seq_seq)):
+        sub = seq_seq[j]
+
+        for k in range (len(sub)):
+            sum = sum + sub[k]
+    return sum
 
 
 def run_test_print_characters():
