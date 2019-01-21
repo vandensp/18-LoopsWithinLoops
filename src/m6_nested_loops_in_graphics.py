@@ -83,6 +83,9 @@ def draw_L(window, circle, r, c):
     # Done: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    #realized the easy way to do this a bit too late
+
     og_x = circle.center.x
     og_y = circle.center.y
     radius = circle.radius
@@ -169,7 +172,7 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # Done: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
     lenght = rectangle.get_upper_right_corner().x - rectangle.get_upper_left_corner().x
@@ -177,9 +180,20 @@ def draw_wall_on_right(rectangle, n, window):
     low_left = rectangle.get_lower_left_corner()
     up_right = rectangle.get_upper_right_corner()
 
-    for k in range (n):
-        new_rectangle = rg.Rectangle(rg.Point(low_left.x, low_left.y + (lenght * n)), rg.Point(up_right.x, up_right.y + (lenght * n)))
-        new_rectangle.attach_to(window)
+    for j in range(n):  # Loop through the rows
+        for _ in range(j + 1):  # Loop through the columns
+            new_rectangle = rg.Rectangle(low_left, up_right)
+            new_rectangle.attach_to(window)
+            window.render()
+
+            low_left.x = low_left.x - lenght # Move x to the right, for next circle
+            up_right.x = up_right.x - lenght
+
+        low_left.y = low_left.y + width  # Move y down, for the next row of circles
+        up_right.y = up_right.y + width
+
+        low_left.x = rectangle.get_lower_left_corner().x  # Reset x to the left-edge, for the next row
+        up_right.x = rectangle.get_upper_right_corner().x  # Reset x to the left-edge, for the next row
 
 
 # ----------------------------------------------------------------------
